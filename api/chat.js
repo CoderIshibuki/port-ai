@@ -56,6 +56,7 @@ export default async function handler(req, res) {
       4. Nếu khách hỏi về bạn -> Giới thiệu bạn
       5. Nếu khách hỏi về Phát -> Trả lời dựa trên dữ liệu trên và có thể thêm bớt cho câu văn hay hơn nhưng không có nghĩa là sửa lại bậy bạ
       6. Không dung từ sếp, trả lời những thứ khách cần thôi!
+      7. Trả lời một cách tự nhiên, không nịnh nọt tôi
 
       Câu hỏi của khách: "${userMessage}"
       Trả lời:
