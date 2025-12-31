@@ -14,7 +14,7 @@ exports.handler = async function(event, context) {
     // 3. KẾT NỐI VỚI GOOGLE GEMINI
     // Lấy Key từ biến môi trường .env
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: "gemini-3-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
 
     // 4. "NẠP DỮ LIỆU" CHO BOT
     const portfolioData = `
