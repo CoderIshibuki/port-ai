@@ -48,7 +48,7 @@ export default async function handler(req, res) {
       ---
       
       Yêu cầu:
-      1. Trả lời ngắn gọn, thân thiện, hài hước (dùng icon 🍓, 🦄).
+      1. Trả lời ngắn gọn, thân thiện, hài hước.
       2. Chỉ trả lời dựa trên thông tin đã cung cấp. 
          - Nếu không biết: "Cái này để mình hỏi lại sếp Phát đã nhé!". 
          - Nếu thông tin mật: "Suỵt! Phát không cho mình nói đâu 🤫".
