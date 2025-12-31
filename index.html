@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhatSkibidi AI Portfolio</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <main class="chat-interface">
+            <div class="mobile-header">
+                <span>PhatSkibidi AI</span>
+            </div>
+
+            <div id="chat-box" class="chat-history">
+                <div class="welcome-screen">
+                    <h1>Xin chào, tui là AI của Phát 👋</h1>
+                    <p>Tui biết mọi thứ về cậu ấy. Cậu muốn hỏi gì?</p>
+                    <div class="suggestion-chips">
+                        <button onclick="fillInput('Phát học trường nào?')">🏫 Phát học trường nào?</button>
+                        <button onclick="fillInput('Dự án NoobDev là gì?')">⌨️ Dự án cua Phat?</button>
+                        <button onclick="fillInput('Liên hệ với Phát sao?')">Liên hệ</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-container">
+                <div class="input-wrapper">
+                    <input type="text" id="user-input" placeholder="Hỏi gì đó đi..." onkeypress="handleEnter(event)">
+                    <button id="send-btn" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="assets/script.js"></script>
+</body>
+</html>

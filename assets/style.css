@@ -1,0 +1,162 @@
+/* --- 1. KHU VỰC CHỈNH MÀU (SỬA Ở ĐÂY LÀ ĐỔI HẾT) --- */
+:root {
+    /* Đây là chỗ tạo Gradient chuyển màu: Hồng nhạt -> Xanh lá nhạt */
+    --bg-gradient: linear-gradient(135deg, #ffdde170 0%, #c9ffbfb2 100%);
+    
+    /* Màu kính mờ (Sidebar) */
+    --glass-bg: rgba(255, 255, 255, 0.4); 
+    --glass-border: 1px solid rgba(255, 255, 255, 0.6);
+    
+    /* Màu chữ */
+    --text-main: #5d6d7e; /* Xám xanh đậm cho dễ đọc */
+    --text-highlight: #ff6b6b; /* Màu điểm nhấn (hồng đậm hơn xíu) */
+    
+    /* Màu tin nhắn của User (cũng gradient cho đồng bộ) */
+    --user-bubble: linear-gradient(to right, #ff9a9e, #fad0c4);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+
+body {
+    background: var(--bg-gradient); 
+    background-size: 200% 200%;
+    animation: gradientMove 10s ease infinite; 
+    color: var(--text-main);
+    height: 100vh;
+    overflow: hidden;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.app-container { display: flex; height: 100%; width: 100%; }
+
+/* --- MAIN CHAT (BÊN PHẢI) --- */
+.chat-interface {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.chat-history {
+    flex: 1;
+    overflow-y: auto;
+    padding: 40px 15%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.chat-history::-webkit-scrollbar { width: 6px; }
+.chat-history::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+
+/* Welcome Screen */
+.welcome-screen { text-align: center; margin-top: 12vh; }
+.welcome-screen h1 {
+    font-size: 3rem; margin-bottom: 10px;
+    color: #444;
+}
+/* Chữ PhatSkibidi đổi màu theo gradient */
+.welcome-screen h1 span {
+     background: linear-gradient(to right, #ff9a9e, #48dbfb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.welcome-screen p { color: #777; font-size: 1.1rem; }
+
+.suggestion-chips { display: flex; justify-content: center; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
+.suggestion-chips button {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid #fff;
+    color: #555;
+    padding: 10px 20px; border-radius: 25px;
+    cursor: pointer; transition: 0.2s;
+    font-size: 14px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.suggestion-chips button:hover {
+    background: #fff;
+    transform: translateY(-3px);
+    color: var(--text-highlight);
+}
+
+/* Tin nhắn */
+.msg-row { display: flex; animation: floatUp 0.3s ease; }
+@keyframes floatUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.msg-row.user { justify-content: flex-end; }
+.msg-row.bot { justify-content: flex-start; }
+
+.msg-bubble {
+    max-width: 75%; padding: 14px 20px; border-radius: 20px;
+    line-height: 1.5; font-size: 15px; position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* User Bubble: Màu Hồng Gradient */
+.msg-row.user .msg-bubble {
+    background: var(--user-bubble);
+    color: #fff;
+    border-radius: 20px 20px 4px 20px;
+}
+
+/* Bot Bubble: Trắng tinh khôi */
+.msg-row.bot .msg-bubble {
+    background: #ffffff;
+    color: #444;
+    border: 1px solid #fff;
+    border-radius: 20px 20px 20px 4px;
+}
+
+/* --- INPUT AREA --- */
+.input-container { padding: 25px 15%; }
+
+.input-wrapper {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    padding: 8px 10px 8px 25px;
+    display: flex; align-items: center;
+    border: 2px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+.input-wrapper:focus-within {
+    border-color: #ff9a9e; /* Viền hồng khi gõ */
+    box-shadow: 0 5px 20px rgba(255, 154, 158, 0.2);
+}
+
+input { flex: 1; background: transparent; border: none; color: #444; font-size: 16px; outline: none; padding: 10px; }
+input::placeholder { color: #aaa; }
+
+#send-btn {
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    border: none;
+    width: 45px; height: 45px;
+    border-radius: 50%;
+    color: white; font-size: 18px;
+    cursor: pointer; margin-left: 10px;
+    transition: 0.2s;
+    box-shadow: 0 3px 10px rgba(255, 154, 158, 0.4);
+    display: flex; align-items: center; justify-content: center;
+}
+#send-btn:hover { transform: scale(1.1); }
+
+/* Mobile */
+.mobile-header { display: none; }
+@media (max-width: 768px) {
+    .sidebar { display: none; }
+    .mobile-header { 
+        display: block; padding: 15px; 
+        background: #fff; color: #555; border-bottom: 1px solid #eee; 
+        text-align: center; font-weight: bold;
+    }
+    .chat-history, .input-container { padding-left: 15px; padding-right: 15px; }
+}
+
+/* Loading Dots */
+.dots span { animation: blink 1.4s infinite both; font-size: 30px; margin: 0 2px; color: #ff9a9e; }
+@keyframes blink { 0% { opacity: 0.2; } 20% { opacity: 1; } 100% { opacity: 0.2; } }
