@@ -9,14 +9,12 @@ export default async function handler(req, res) {
 
   try {
     // 2. LẤY DỮ LIỆU TỪ FRONTEND
-    // Vercel tự động phân tích JSON, không cần JSON.parse()
     const { message } = req.body;
     const userMessage = message || "Xin chào";
 
     // 3. KẾT NỐI VỚI GOOGLE AI
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    
-    // QUAN TRỌNG: Đổi sang model này để có 14.400 lượt/ngày (Không dùng Gemini Flash nữa vì dễ bị chặn)
+
     const model = genAI.getGenerativeModel({ model: "gemini-3-flash-preview" });
 
     // 4. "NẠP DỮ LIỆU" CHO BOT (Giữ nguyên nội dung của bạn)
@@ -62,12 +60,12 @@ export default async function handler(req, res) {
       Trả lời:
     `;
 
-    // 5. GỬI LÊN GEMMA VÀ CHỜ KẾT QUẢ
+    // 5. PUSH TO GEMINI
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
 
-    // 6. TRẢ KẾT QUẢ VỀ FRONTEND (Cú pháp Vercel)
+    // 6. TRẢ KẾT QUẢ VỀ FRONTEND
     return res.status(200).json({ reply: text });
 
   } catch (error) {
